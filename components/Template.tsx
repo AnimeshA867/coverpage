@@ -11,6 +11,7 @@ interface TemplateProps {
   teacher: string;
   program: string;
   semester: string;
+  rollNumber: string;
 }
 
 const Template: FC<TemplateProps> = ({
@@ -20,6 +21,7 @@ const Template: FC<TemplateProps> = ({
   teacher,
   program,
   semester,
+  rollNumber,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,7 +41,7 @@ const Template: FC<TemplateProps> = ({
     <div>
       <div
         ref={ref}
-        className="flex flex-col items-center w-[210mm] h-[297mm]  p-12 bg-white space-y-4"
+        className="flex flex-col items-center w-[210mm] h-[297mm]  p-12 bg-white space-y-4 outline-black outline-offset-[-5px] outline"
       >
         <div className="w-full  h-[200px] text-center space-y-2 justify-center flex flex-col">
           <h1 className="text-2xl font-bold">Lab Report</h1>
@@ -81,14 +83,19 @@ const Template: FC<TemplateProps> = ({
           <h1 className="font-light">(Affiliated To Tribhuvan University)</h1>
           <h1 className="font-semibold">Jwalakhel, Lalitpur</h1>
         </div>
-        <div className="w-full  h-[200px] text-center justify-center flex flex-col text-2xl">
+        <div className="w-full  h-[200px] text-center justify-center flex flex-col text-2xl space-y-2">
           <h1 className="font-bold">Submitted By:</h1>
-          <h2 className="font-light">{name}</h2>
+          <h2 className="font-semibold">{name}</h2>
+          {rollNumber && (
+            <h2 className="font-medium italic">
+              Symbol No: <strong className="font-semibold">{rollNumber}</strong>
+            </h2>
+          )}
         </div>
 
-        <div className="w-full  text-xl font-semibold mt-8">
+        <div className="w-full  text-xl font-semibold mt-8 ">
           <p>Program: {program}</p>
-          <p>Semester: {semester}</p>
+          <p>{semester}</p>
         </div>
       </div>
 

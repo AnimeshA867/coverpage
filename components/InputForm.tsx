@@ -59,6 +59,7 @@ const formSchema = z.object({
   semester: z
     .string()
     .min(2, { message: "Semester must be at least 2 characters" }),
+  rollNumber: z.string(),
 });
 import { data } from "@/utils/data";
 export default function TemplateForm() {
@@ -70,6 +71,7 @@ export default function TemplateForm() {
       program: "BCA",
       subject: "",
       semester: "Semester I",
+      rollNumber: "",
     },
   });
 
@@ -271,6 +273,28 @@ export default function TemplateForm() {
                 <div className="flex flex-col space-y-1.5">
                   <FormField
                     control={form.control}
+                    name="rollNumber"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Roll Number</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter your Roll Number"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          This is Symbol Number given by TU. <br />
+                          <strong>Can be left empty.</strong>
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="flex flex-col space-y-1.5">
+                  <FormField
+                    control={form.control}
                     name="program"
                     render={({ field }) => (
                       <FormItem>
@@ -403,6 +427,7 @@ export default function TemplateForm() {
                   ] as string
                 }
                 semester={form.getValues("semester")}
+                rollNumber={form.getValues("rollNumber")}
               />
             </div>
 

@@ -61,7 +61,7 @@ const Template: FC<TemplateProps> = ({
   createPDF();
   return (
     <div>
-      {!pdfCreated && (
+      {pdfCreated && window.innerWidth > 600 && (
         <div
           ref={ref}
           className="flex flex-col items-center w-[210mm] h-[297mm]  p-12 bg-white space-y-4 outline-black outline-offset-[-5px] outline"
@@ -124,7 +124,7 @@ const Template: FC<TemplateProps> = ({
         </div>
       )}
 
-      {pdfCreated && (
+      {pdfCreated && window.innerWidth < 600 && (
         <div className="mt-4 flex justify-center flex-col">
           <iframe
             src={pdfCreated}
@@ -132,21 +132,15 @@ const Template: FC<TemplateProps> = ({
             className="w-full h-[500px] border"
             frameBorder={0}
           />
-          <button
-            onClick={downloadPDF}
-            className="mt-4 px-4 py-2 bg-green-500 text-white rounded mx-auto"
-          >
-            Download PDF
-          </button>
         </div>
       )}
 
-      {/*  <button
+      <button
         onClick={downloadPDF}
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded mx-auto"
       >
         Download as PDF
-      </button> */}
+      </button>
     </div>
   );
 };

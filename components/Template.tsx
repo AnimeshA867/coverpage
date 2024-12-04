@@ -59,70 +59,74 @@ const Template: FC<TemplateProps> = ({
     }
   };
   createPDF();
-  return (
-    <div>
-      {pdfCreated && window.innerWidth > 600 && (
-        <div
-          ref={ref}
-          className="flex flex-col items-center w-[210mm] h-[297mm]  p-12 bg-white space-y-4 outline-black outline-offset-[-5px] outline"
-        >
-          <div className="w-full  h-[200px] text-center space-y-2 justify-center flex flex-col">
-            <h1 className="text-2xl font-bold">Lab Report</h1>
-            <h1 className="text-2xl font-bold">Of</h1>
-            <h1 className="text-2xl font-bold">{subject}</h1>
-            <h1 className="text-2xl font-bold">Subject Code: {code}</h1>
-          </div>
+  const RenderPDF = () => {
+    return (
+      <div
+        ref={ref}
+        className="flex flex-col items-center w-[210mm] h-[297mm]  p-12 bg-white space-y-4 outline-black outline-offset-[-5px] outline"
+      >
+        <div className="w-full  h-[200px] text-center space-y-2 justify-center flex flex-col">
+          <h1 className="text-2xl font-bold">Lab Report</h1>
+          <h1 className="text-2xl font-bold">Of</h1>
+          <h1 className="text-2xl font-bold">{subject}</h1>
+          <h1 className="text-2xl font-bold">Subject Code: {code}</h1>
+        </div>
 
-          <div className="w-full  h-[200px] flex flex-row justify-between items-center">
-            <div className="h-auto w-[150px]">
-              <img
-                src={"/tribhuvan-logo.png"}
-                alt="..."
-                height={500}
-                width={500}
-                className="object-contain w-full h-full"
-              />
-            </div>
-            <div className="flex flex-row items-center space-x-8 flex-0">
-              <div className="border-[3px] h-[125px] border-black"></div>
-              <div className="border-[3px] h-[200px] border-black"></div>
-              <div className="border-[3px] h-[125px] border-black"></div>
-            </div>
-            <div className="h-auto w-[150px]">
-              <img
-                src={"/vedas-logo.png"}
-                alt="..."
-                height={500}
-                width={500}
-                className="object-contain w-full h-full"
-              />
-            </div>
+        <div className="w-full  h-[200px] flex flex-row justify-between items-center">
+          <div className="h-auto w-[150px]">
+            <img
+              src={"/tribhuvan-logo.png"}
+              alt="..."
+              height={500}
+              width={500}
+              className="object-contain w-full h-full"
+            />
           </div>
-
-          <div className="w-full  h-[250px] text-center text-2xl space-y-2 justify-center flex flex-col">
-            <h1 className="font-bold">Submitted To:</h1>
-            <h2 className="font-semibold">{teacher}</h2>
-            <h1 className="font-light">Vedas College</h1>
-            <h1 className="font-light">(Affiliated To Tribhuvan University)</h1>
-            <h1 className="font-semibold">Jwalakhel, Lalitpur</h1>
+          <div className="flex flex-row items-center space-x-8 flex-0">
+            <div className="border-[3px] h-[125px] border-black"></div>
+            <div className="border-[3px] h-[200px] border-black"></div>
+            <div className="border-[3px] h-[125px] border-black"></div>
           </div>
-          <div className="w-full  h-[200px] text-center justify-center flex flex-col text-2xl space-y-2">
-            <h1 className="font-bold">Submitted By:</h1>
-            <h2 className="font-semibold">{name}</h2>
-            {rollNumber && (
-              <h2 className="font-medium italic">
-                Symbol No:{" "}
-                <strong className="font-semibold">{rollNumber}</strong>
-              </h2>
-            )}
-          </div>
-
-          <div className="w-full  text-xl font-semibold mt-8 ">
-            <p>Program: {program}</p>
-            <p>{semester}</p>
+          <div className="h-auto w-[150px]">
+            <img
+              src={"/vedas-logo.png"}
+              alt="..."
+              height={500}
+              width={500}
+              className="object-contain w-full h-full"
+            />
           </div>
         </div>
-      )}
+
+        <div className="w-full  h-[250px] text-center text-2xl space-y-2 justify-center flex flex-col">
+          <h1 className="font-bold">Submitted To:</h1>
+          <h2 className="font-semibold">{teacher}</h2>
+          <h1 className="font-light">Vedas College</h1>
+          <h1 className="font-light">(Affiliated To Tribhuvan University)</h1>
+          <h1 className="font-semibold">Jwalakhel, Lalitpur</h1>
+        </div>
+        <div className="w-full  h-[200px] text-center justify-center flex flex-col text-2xl space-y-2">
+          <h1 className="font-bold">Submitted By:</h1>
+          <h2 className="font-semibold">{name}</h2>
+          {rollNumber && (
+            <h2 className="font-medium italic">
+              Symbol No: <strong className="font-semibold">{rollNumber}</strong>
+            </h2>
+          )}
+        </div>
+
+        <div className="w-full  text-xl font-semibold mt-8 ">
+          <p>Program: {program}</p>
+          <p>{semester}</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div>
+      {!pdfCreated && window.innerWidth > 600 && <RenderPDF />}
+      {pdfCreated && window.innerWidth > 600 && <RenderPDF />}
 
       {pdfCreated && window.innerWidth < 600 && (
         <div className="mt-4 flex justify-center flex-col">

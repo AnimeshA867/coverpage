@@ -237,23 +237,23 @@ export const data = {
     "Semester VI": [
       {
         subject: "Software Engineering",
-        code: "CSC375",
+        code: "CSC364",
       },
       {
         subject: "Compiler Design and Construction",
-        code: "CSC376",
+        code: "CSC365",
       },
       {
         subject: "E-Governance",
-        code: "CSC377",
+        code: "CSC366",
       },
       {
         subject: "NET Centric Computing",
-        code: "CSC378",
+        code: "CSC367",
       },
       {
         subject: "Technical Writing",
-        code: "CSC379",
+        code: "CSC368",
       },
       {
         subject: "Applied Logic",
@@ -261,7 +261,7 @@ export const data = {
       },
       {
         subject: "E-Commerce",
-        code: "CSC381",
+        code: "CSC370",
       },
       {
         subject: "Automation and Robotics",
